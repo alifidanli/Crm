@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CrmModelStoreContainer" CdmEntityContainer="CrmEntities">
+    <EntitySetMapping Name="CustomerReport">
+      <EntityTypeMapping TypeName="CrmModel.CustomerReport">
+        <MappingFragment StoreEntitySet="CustomerReport">
+          <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerSurname" ColumnName="CustomerSurname" />
+          <ScalarProperty Name="DateOfCall" ColumnName="DateOfCall" />
+          <ScalarProperty Name="TimeOfCall" ColumnName="TimeOfCall" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

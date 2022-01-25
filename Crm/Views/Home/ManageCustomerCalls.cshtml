@@ -1,0 +1,302 @@
+﻿
+@{
+    ViewBag.Title = "ManageCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Customer Call List</h3>
+
+<table id="customercalls" class="table table-bordered table-hover">
+    <thead>
+    <th>Date of Call</th>
+    <th>Time of Call</th>
+    <th>Customer No</th>
+    <th>Subject</th>
+    <th>Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<div style="background-color:#efefef; width:auto">
+    <h3>Create Customer Call</h3>
+    <br />
+    @using (Html.BeginForm("ManageCustomerCalls", "Home", FormMethod.Post, new { operationType = "create", language = Session["language"], id = "createCustomerCallForm" }))
+    {
+        <div style="max-width: 400px;">
+            <input type="hidden" id="operationType" name="operationType" value="create">
+
+            <div class="form-group">
+                <label for="editName">Date of Call</label>
+                <div class="validationhighlight">
+                    <input type="date" name="idateOfCall" class="form-control" id="idateOfCall" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="editName">Time of Call</label>
+                <div class="validationhighlight">
+                    <input type="time" name="itimeOfCall" class="form-control" id="itimeOfCall" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="editName">Customer No</label>
+                <div class="validationhighlight">
+                    <input type="number" name="icustomerNo" class="form-control" id="icustomerNo" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="editName">Subject</label>
+                <div class="validationhighlight">
+                    <input type="text" name="isubject" class="form-control" id="isubject" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="editName">Description</label>
+                <div class="validationhighlight">
+                    <input type="text" name="idescription" class="form-control" id="idescription" required>
+                </div>
+            </div>
+            <br />
+            <input type="submit" value="Submit" class="btn btn-primary submit" />
+            <br />
+            <br />
+            <div id="dvMessage" style="display:none" class="alert alert-danger">
+                <strong>Error!</strong>
+                <span>@ViewBag.Message</span>
+            </div>
+        </div>
+    }
+</div>
+<div id="editModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Customer</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm("ManageCustomerCalls", "Home", FormMethod.Post, new { operationType = "edit", language = Session["language"], id = "editCustomerCallForm" }))
+                {
+                <div style="max-width: 400px;">
+                    <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="operationType" name="operationType" value="edit">
+
+
+                    <div class="form-group">
+                        <label for="editName">Date of Call</label>
+                        <div class="validationhighlight">
+                            <input type="date" name="dateOfCall" class="form-control" id="dateOfCall" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Time of Call</label>
+                        <div class="validationhighlight">
+                            <input type="time" name="timeOfCall" class="form-control" id="timeOfCall" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Customer No</label>
+                        <div class="validationhighlight">
+                            <input type="number" name="customerNo" class="form-control" id="customerNo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Subject</label>
+                        <div class="validationhighlight">
+                            <input type="text" name="subject" class="form-control" id="subject" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Description</label>
+                        <div class="validationhighlight">
+                            <input type="text" name="description" class="form-control" id="description" required>
+                        </div>
+                    </div>
+
+                    <br />
+                    <input type="submit" value="Submit" class="btn btn-primary submit" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <br />
+                    <br />
+                    <div id="dvMessage" style="display:none" class="alert alert-danger">
+                        <strong>Error!</strong>
+                        <span>@ViewBag.Message</span>
+                    </div>
+                </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#createCustomerCallForm").validate({
+        // Specify validation rules
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-error").removeClass("has-success");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-success").removeClass("has-error");
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+    $("#editCustomerCallForm").validate({
+        // Specify validation rules
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-error").removeClass("has-success");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-success").removeClass("has-error");
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+    $(document).ready(function () {
+        var customers;
+        /*
+            <th>Date of Call</th>
+    <th>Time of Call</th>
+    <th>Customer No</th>
+    <th>Subject</th>
+    <th>Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
+         */
+
+
+
+        $.ajax({
+            url: "/api/customercalls",
+            method: "GET",
+            success: function (data) {
+                $("#customercalls").DataTable(
+                    {
+                        data: data,
+                        columns: [
+                            {
+                                data: "dateOfCall", 
+                                render: function (data, type, row) {
+                                    if (type === "sort" || type === "type") {
+                                        return data;
+                                    }
+                                    return moment(data).format("MM-DD-YYYY");
+                                }
+                            },
+                            {
+                                data: "timeOfCall"
+                            },
+                            {
+                                data: "customer.customerNo"
+                            },
+                            {
+                                data: "subject"
+                            },
+                            {
+                                data: "description"
+                            },
+                            {
+                                data: "id",
+                                render: function (data) {
+                                    return "<button class='btn-link js-edit' data-customer-id=" + data + "> Edit </button>";
+                                }
+
+                            },
+                            {
+                                data: "id",
+                                render: function (data) {
+                                    return "<button class='btn-link js-delete' data-customer-id=" + data + "> Delete</button>";
+                                }
+
+                            }
+                        ]
+                    }
+                );
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
+            }
+        });
+
+        $("#customercalls").on("click", ".js-delete", function () {
+            var button = $(this);
+            bootbox.confirm("Are you sure?", function (result) {
+
+                if (result) {
+
+                    $.ajax({
+                        url: "/api/customercalls/delete/" + button.attr("data-customer-id"),
+                        method: "PUT",
+                        success: function (data) {
+                            button.parents("tr").remove();
+                        }
+                    });
+
+
+                }
+            });
+        });
+
+        $("#customercalls").on("click", ".js-edit", function () {
+            var button = $(this);
+
+            $('#editModal').modal('toggle');
+
+            $.ajax({
+                url: "/api/customercalls/" + button.attr("data-customer-id"),
+                method: "GET",
+                success: function (data) {
+                    $('#id').val(data.id);
+
+                    var date = data.dateOfCall.substring(0, 10);
+                    $('#dateOfCall').val(date);
+
+                    $('#timeOfCall').val(data.timeOfCall);
+                    $('#customerNo').val(data.customer.customerNo);
+                    $('#subject').val(data.subject);
+                    $('#description').val(data.description);
+
+                    console.log(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                }
+            });
+
+        });
+    });
+
+</script>

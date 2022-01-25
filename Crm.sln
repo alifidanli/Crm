@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm", "Crm\Crm.csproj", "{CBDC20DE-86C0-4815-A41E-686134DBBB5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmTest", "CrmTest\CrmTest.csproj", "{DF36D90F-5D6E-43EB-9AA2-E2BE9A6E00EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.Core", "Crm.Core\Crm.Core.csproj", "{16AD8F5D-2488-43E5-9937-523614BE113C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBDC20DE-86C0-4815-A41E-686134DBBB5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDC20DE-86C0-4815-A41E-686134DBBB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDC20DE-86C0-4815-A41E-686134DBBB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDC20DE-86C0-4815-A41E-686134DBBB5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF36D90F-5D6E-43EB-9AA2-E2BE9A6E00EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF36D90F-5D6E-43EB-9AA2-E2BE9A6E00EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF36D90F-5D6E-43EB-9AA2-E2BE9A6E00EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF36D90F-5D6E-43EB-9AA2-E2BE9A6E00EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16AD8F5D-2488-43E5-9937-523614BE113C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16AD8F5D-2488-43E5-9937-523614BE113C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16AD8F5D-2488-43E5-9937-523614BE113C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16AD8F5D-2488-43E5-9937-523614BE113C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DC9C77C-6B23-435D-9545-AF11CEA09EDD}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/alifidanli
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Crm.Core\\Crm.Core.csproj
+		SccProjectName1 = Crm.Core
+		SccLocalPath1 = Crm.Core
+		SccProjectUniqueName2 = Crm\\Crm.csproj
+		SccProjectName2 = Crm
+		SccLocalPath2 = Crm
+		SccProjectUniqueName3 = CrmTest\\CrmTest.csproj
+		SccProjectName3 = CrmTest
+		SccLocalPath3 = CrmTest
+	EndGlobalSection
+EndGlobal

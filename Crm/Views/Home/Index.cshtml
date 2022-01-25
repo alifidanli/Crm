@@ -1,0 +1,98 @@
+﻿@model Crm.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row" style="height: 800px;">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            @if (Session["username"] == null)
+            {
+                <img src="~/Content/Logo.png" />
+                using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "SignInForm" }))
+                {
+                    <div style="max-width: 400px;">
+                        <h2 class="form-signin-heading">
+                            @Crm.Resource.Login
+                        </h2>
+                        <label>
+                            @Crm.Resource.UserName
+                        </label>
+                        <div class="validationhighlight">
+                            @Html.TextBoxFor(m => m.user.UserName, new { @class = "form-control" })
+                        </div>
+                        <div>
+                            @Html.ValidationMessageFor(m => m.user.UserName, "", new { @class = "error" })
+                        </div>
+                        <br />
+                        <label>
+                            @Crm.Resource.Password
+                        </label>
+                        <div class="validationhighlight">
+                            @Html.PasswordFor(m => m.user.Password, new { @class = "form-control" })
+                        </div>
+
+                        <div>
+                            @Html.ValidationMessageFor(m => m.user.Password, "", new { @class = "error" })
+                        </div>
+                        <br />
+                        <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />
+                        <input type="submit" value=@Crm.Resource.Submit class="btn btn-primary submit" />
+                        <br />
+                        <br />
+                        <div id="dvMessage" style="display:none" class="alert alert-danger">
+                            <strong>Error!</strong>
+                            <span>@ViewBag.Message</span>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <img src="~/Content/Logo.png" />
+                    <h2>@Crm.Resource.GettingStarted</h2>
+                    <p>
+                        @Crm.Resource.GettingStartedDesc
+                    </p>
+                </div>
+            }
+
+
+        </div>
+    </div>
+    </div>
+    <script>
+        $(function () {
+            $("#SignInForm").validate({
+            // Specify validation rules
+
+            rules: {
+               // "Step1Dto.PickupPoint":"required",
+                "@Html.NameFor(m => m.user.UserName)": "required",
+                "@Html.NameFor(m => m.user.Password)": "required"
+                },
+                errorElement: "em",
+                errorPlacement: function (error, element) {
+                    // Add the `help-block` class to the error element
+                    error.addClass("help-block");
+
+                    if (element.prop("type") === "checkbox") {
+                        error.insertAfter(element.parent("label"));
+                    } else {
+                        error.insertAfter(element);
+                    }
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).parents(".validationhighlight").addClass("has-error").removeClass("has-success");
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).parents(".validationhighlight").addClass("has-success").removeClass("has-error");
+                },
+            submitHandler: function (form) {
+                form.submit();
+            }
+            });
+        });
+
+    </script>

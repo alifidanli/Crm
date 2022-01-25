@@ -1,0 +1,288 @@
+﻿
+@{
+    ViewBag.Title = "ManageCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Customer List</h3>
+
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+    <th>Customer No</th>
+    <th>Customer Name</th>
+    <th>Customer Surname</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<div style="background-color:#efefef; width:auto" >
+    <h3>Create Customer</h3>
+ <br />
+    @using (Html.BeginForm("ManageCustomers", "Home", FormMethod.Post, new { operationType = "create", language = Session["language"], id = "createCustomerForm" }))
+    {
+<div style="max-width: 400px;">
+    <input type="hidden" id="operationType" name="operationType" value="create">
+
+    <div class="form-group">
+        <label for="editName">Customer Name</label>
+        <div class="validationhighlight">
+            <input type="text" name="icustomerName" class="form-control" id="icustomerName" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="editName">Customer Surname</label>
+        <div class="validationhighlight">
+            <input type="text" name="icustomerSurname" class="form-control" id="icustomerSurname" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="editName">Post Code</label>
+        <div class="validationhighlight">
+            <input type="text" name="ipostCode" class="form-control" id="ipostCode" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="editName">Address</label>
+        <div class="validationhighlight">
+            <input type="text" name="iaddress" class="form-control" id="iaddress" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="editName">Date Of Birth</label>
+        <div class="validationhighlight">
+            <input type="date" name="idateofBirth" class="form-control" id="idateofBirth" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="editName">Country</label>
+        <div class="validationhighlight">
+            <input type="text" name="icountry" class="form-control" id="icountry" required>
+        </div>
+    </div>
+
+    <br />
+    <input type="submit" value="Submit" class="btn btn-primary submit" />
+    <br />
+    <br />
+    <div id="dvMessage" style="display:none" class="alert alert-danger">
+        <strong>Error!</strong>
+        <span>@ViewBag.Message</span>
+    </div>
+</div>
+    }
+</div>
+<div id="editModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Customer</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm("ManageCustomers", "Home", FormMethod.Post, new { operationType = "edit", language = Session["language"], id = "editCustomerForm" }))
+                {
+                <div style="max-width: 400px;">
+                    <input type="hidden" id="customerNo" name="customerNo">
+                    <input type="hidden" id="operationType" name="operationType" value="edit">
+
+
+                    <div class="form-group">
+                        <label for="editName">Customer Name</label>
+                        <div class="validationhighlight">
+                            <input type="text" name="customerName" class="form-control" id="customerName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Customer Surname</label>
+                        <div class="validationhighlight">
+                            <input type="text" name="customerSurname" class="form-control" id="customerSurname" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Post Code</label>
+                        <div class="validationhighlight">
+                            <input type="text" name="postCode" class="form-control" id="postCode" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Address</label>
+                        <div class="validationhighlight">
+                            <input type="text" name="address" class="form-control" id="address" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Date Of Birth</label>
+                        <div class="validationhighlight">
+                            <input type="date" name="dateofBirth" class="form-control" id="dateofBirth" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editName">Country</label>
+                        <div class="validationhighlight">
+                            <input type="text" name="country" class="form-control" id="country" required>
+                        </div>
+                    </div>
+
+                    <br />
+                    <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />
+                    <input type="submit" value="Submit" class="btn btn-primary submit" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <br />
+                    <br />
+                    <div id="dvMessage" style="display:none" class="alert alert-danger">
+                        <strong>Error!</strong>
+                        <span>@ViewBag.Message</span>
+                    </div>
+                </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#createCustomerForm").validate({
+        // Specify validation rules
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-error").removeClass("has-success");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-success").removeClass("has-error");
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+    $("#editCustomerForm").validate({
+        // Specify validation rules
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-error").removeClass("has-success");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".validationhighlight").addClass("has-success").removeClass("has-error");
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+    $(document).ready(function () {
+        var customers;
+
+        $.ajax({
+            url: "/api/customers",
+            method: "GET",
+            success: function (data) {
+                $("#customers").DataTable(
+                    {
+                        data: data,
+                        columns: [
+                            {
+                                data: "customerNo"
+                            },
+                            {
+                                data: "customerName"
+                            },
+                            {
+                                data: "customerSurname"
+                            },
+                            {
+                                data: "customerNo",
+                                render: function (data) {
+                                    return "<button class='btn-link js-edit' data-customer-id=" + data + "> Edit </button>";
+                                }
+
+                            },
+                            {
+                                data: "customerNo",
+                                render: function (data) {
+                                    return "<button class='btn-link js-delete' data-customer-id=" + data + "> Delete</button>";
+                                }
+
+                            }
+                        ]
+                    }
+                );
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Status: " + textStatus); alert("Error: " + errorThrown);
+            }
+        });
+
+        $("#customers").on("click", ".js-delete", function () {
+            var button = $(this);
+            bootbox.confirm("Are you sure?", function (result) {
+
+                if (result) {
+
+                    $.ajax({
+                        url: "/api/customers/delete/" + button.attr("data-customer-id"),
+                        method: "PUT",
+                        success: function (data) {
+                            button.parents("tr").remove();
+                        }
+                    });
+
+
+                }
+            });
+        });
+
+        $("#customers").on("click", ".js-edit", function () {
+            var button = $(this);
+
+            $('#editModal').modal('toggle');
+
+            $.ajax({
+                url: "/api/customers/" + button.attr("data-customer-id"),
+                method: "GET",
+                success: function (data) {
+                    $('#customerNo').val(data.customerNo);
+                    $('#customerName').val(data.customerName);
+                    $('#customerSurname').val(data.customerSurname);
+                    $('#postCode').val(data.postCode);
+                    $('#country').val(data.country);
+                    $('#address').val(data.address);
+                    var date = data.dateofBirth.substring(0, 10);
+                    $('#dateofBirth').val(date);
+                    console.log(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                }
+            });
+
+        });
+    });
+
+</script>

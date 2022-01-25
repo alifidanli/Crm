@@ -1,0 +1,6 @@
+C:\Users\ali.fidanli\source\repos\Crm\Crm.Core\bin\Debug\Crm.Core.dll
+C:\Users\ali.fidanli\source\repos\Crm\Crm.Core\bin\Debug\Crm.Core.pdb
+C:\Users\ali.fidanli\source\repos\Crm\Crm.Core\obj\Debug\Crm.Core.csprojAssemblyReference.cache
+C:\Users\ali.fidanli\source\repos\Crm\Crm.Core\obj\Debug\Crm.Core.csproj.CoreCompileInputs.cache
+C:\Users\ali.fidanli\source\repos\Crm\Crm.Core\obj\Debug\Crm.Core.dll
+C:\Users\ali.fidanli\source\repos\Crm\Crm.Core\obj\Debug\Crm.Core.pdb

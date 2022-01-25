@@ -1,0 +1,8 @@
+﻿@if (Session != null && Session["username"] != null)
+{
+    var username = Session["username"];
+
+<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink(Crm.Resource.Logout, "LogOut", "Home", new { language = Session["language"] },null)</li>
+</ul>
+}

@@ -1,0 +1,10 @@
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\obj\Debug\CrmTest.csprojAssemblyReference.cache
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\obj\Debug\CrmTest.csproj.CoreCompileInputs.cache
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\bin\Debug\CrmTest.exe.config
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\bin\Debug\CrmTest.exe
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\bin\Debug\CrmTest.pdb
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\obj\Debug\CrmTest.csproj.CopyComplete
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\obj\Debug\CrmTest.exe
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\obj\Debug\CrmTest.pdb
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\bin\Debug\Crm.Core.dll
+C:\Users\ali.fidanli\source\repos\Crm\CrmTest\bin\Debug\Crm.Core.pdb

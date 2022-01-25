@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Crm.dbo.CustomerReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CustomerReport">
+    <Key>
+      <PropertyRef Name="CustomerNo" />
+    </Key>
+    <Property Name="CustomerNo" Type="int" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CustomerSurname" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateOfCall" Type="date" />
+    <Property Name="TimeOfCall" Type="time" Precision="7" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="CrmModelStoreContainer">
+    <EntitySet Name="CustomerReport" EntityType="Self.CustomerReport" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CustomerReport].[CustomerNo] AS [CustomerNo], 
+    [CustomerReport].[CustomerName] AS [CustomerName], 
+    [CustomerReport].[CustomerSurname] AS [CustomerSurname], 
+    [CustomerReport].[DateOfCall] AS [DateOfCall], 
+    [CustomerReport].[TimeOfCall] AS [TimeOfCall], 
+    [CustomerReport].[Subject] AS [Subject], 
+    [CustomerReport].[Description] AS [Description]
+    FROM [dbo].[CustomerReport] AS [CustomerReport]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

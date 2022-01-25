@@ -1,0 +1,61 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink(Crm.Resource.AppName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                <div class="navbar-collapse collapse">
+
+                    @if (Session != null && Session["username"] != null)
+                    {
+                        var username = Session["username"];
+                        var language = Session["language"];
+                        var permission = Session["permission"];
+
+
+                        if (language == null)
+                        {
+                            language = "en";
+                        }
+
+                    <ul id="navbar" class="nav navbar-nav">                      
+                        <li id="manageCustomers">@Html.ActionLink(Crm.Resource.ManageCustomers, "ManageCustomers", "Home", new { language = language }, null)</li>
+                        <li id="manageCustomerCalls">@Html.ActionLink(Crm.Resource.ManageCustomerCalls, "ManageCustomerCalls", "Home", new { language = language }, null)</li>
+                        <li id="manageReports">@Html.ActionLink(Crm.Resource.ManageReports, "ShowCustomerList", "Home")</li>
+                    </ul>
+                        }
+                        @Html.Partial("_LanguageBar")
+                        @Html.Partial("_LoginBar")
+
+
+                    </div>
+            </div>
+        </div>
+    </div>
+<script>
+    var permisson = "@Session["permission"]";
+
+    switch (permisson) {
+        case "1":
+            $('#manageCustomers').hide();
+            $('#manageReports').hide();
+            break;
+        case "2":
+            $('#manageReports').hide();
+            break;
+        case "3":
+            break;
+        default:
+            $('#manageCustomerCalls').hide();
+            $('#manageCustomers').hide();
+            $('#manageReports').hide();
+        // code block
+    }
+
+</script>
